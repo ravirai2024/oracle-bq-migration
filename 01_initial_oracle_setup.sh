@@ -60,6 +60,7 @@ sqlplus sys/Oracle123@//localhost:1521/ORCLCDB as sysdba <<- EOF
     GRANT SELECT ON V_$LOGFILE TO C##CDC_PRIVS;
     GRANT SELECT ON V_$INSTANCE to C##CDC_PRIVS;
     GRANT SELECT ANY TABLE TO C##CDC_PRIVS;
+    exit;
 EOF
 
 
@@ -76,6 +77,7 @@ sqlplus sys/Oracle123@//localhost:1521/ORCLCDB as sysdba <<- EOF
     GRANT SELECT ON GV_$DATABASE TO C##MYUSER CONTAINER=ALL;
     GRANT FLASHBACK ANY TABLE TO C##MYUSER;
     GRANT FLASHBACK ANY TABLE TO C##MYUSER container=all;
+    exit;
 
 EOF
 
@@ -106,5 +108,6 @@ sqlplus sys/Oracle123@//localhost:1521/ORCLCDB as sysdba <<- EOF
 	insert into C##MYUSER.BPM_EMPLOYEES (name) values ('John');
 	insert into C##MYUSER.BPM_EMPLOYEES (name) values ('Alex');
 	COMMIT;
+	exit;
 
 EOF

@@ -3,13 +3,9 @@ Important Handy commands
 1. Debezium installation on Kafka connect
 
 	$ curl -o /tmp/debezium-connector-oracle-2.6.2.Final-plugin.tar.gz https://repo1.maven.org/maven2/io/debezium/debezium-connector-oracle/2.6.2.Final/debezium-connector-oracle-2.6.2.Final-plugin.tar.gz
-
 	$ mkdir -p /usr/share/java/debezium-connector-oracle
-	
 	$ tar -xzf /tmp/debezium-connector-oracle-2.6.2.Final-plugin.tar.gz -C /usr/share/java/debezium-connector-oracle"
-
 	##Restart container
-
 
 2. Kafka Connect (GCP VM)
 
@@ -28,9 +24,12 @@ Important Handy commands
 
 	Connector Commands ==>
 
-	curl -X GET http://10.247.2.4:8083/connectors/<>/status
-	curl -X DELETE http://10.247.2.4:8083/connectors/oracle_cdc_one
-	curl -X POST --d  http://10.247.2.4:8083/connectors/oracle_cdc_one
+	$ curl -X GET http://10.247.2.4:8083/connectors/oracle_cdc_one/status
+	$ curl -X POST http://10.247.2.4:8083/connectors/oracle_cdc_one/restart
+	$ curl -X GET http://10.247.2.4:8083/connectors
+	$ curl -X GET http://10.247.2.4:8083/connector-plugins
+	$ curl -X DELETE http://10.247.2.4:8083/connectors/oracle_cdc_one
+	$ curl -X POST --d  http://10.247.2.4:8083/connectors/oracle_cdc_one
 	
 	Kafka commands ==>
 
@@ -38,12 +37,10 @@ Important Handy commands
 	c:\kafka\kafka_2.12-3.7.0>bin\windows\kafka-console-consumer.bat --topic CDC_ADMIN_ADD_USER_ETL_SEVEN --bootstrap-server pkc-43n10.us-central1.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
 	c:\kafka\kafka_2.12-3.7.0>bin\windows\kafka-console-consumer.bat --topic test_first --bootstrap-server pkc-43n10.us-central1.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
 
-
 	GCP VM
 	Kafka Installation ==>
 	$ apt-get install telnet
 	$ telnet lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092
-	$  telnet lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud 9092
 	$ curl -O https://downloads.apache.org/kafka/3.7.0/kafka_2.12-3.7.0.tgz
 	$ tar -xzf kafka_2.12-3.7.0.tgz
 	$ cd kafka_2.12-3.7.0
@@ -53,32 +50,81 @@ Important Handy commands
 	$ apt-get install nano
 	$ nano client.properties
 	$ cat client.properties
-	$  export KAFKA_HOME=/root/kafka_2.12-3.7.0
-	$  export PATH=$PATH:$KAFKA_HOME/bin
-	$  export PATH=$PATH:$KAFKA_HOME/bin
-	$  apt-get install default-jdk
-	$  java --version
+	$ export KAFKA_HOME=/root/kafka_2.12-3.7.0
+	$ export PATH=$PATH:$KAFKA_HOME/bin
+	$ export PATH=$PATH:$KAFKA_HOME/bin
+	$ apt-get install default-jdk
+	$ java --version
 
-	$  bin/kafka-console-consumer.sh --topic cdc_admin_customers --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --consumer.config config\client.properties  --from-beginning
-	bin/kafka-console-producer.sh --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --topic first_topic
-	bin/kafka-topics.sh --create --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --command-config config/client.properties
-	 
-	bin/kafka-console-producer.sh --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --producer.config config/client.properties
-	bin/kafka-console-consumer.sh --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
-	 
-	bin/kafka-topics.sh --list --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --command-config config/client.properties
+	Kafka commands 
+	$ bin/kafka-console-consumer.sh --topic cdc_admin_customers --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --consumer.config config\client.properties  --from-beginning
+	$ bin/kafka-console-producer.sh --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --topic first_topic
+	$ bin/kafka-topics.sh --create --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --command-config config/client.properties
+	$ bin/kafka-console-producer.sh --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --producer.config config/client.properties
+	$ bin/kafka-console-consumer.sh --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
+	$ bin/kafka-topics.sh --list --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --command-config config/client.properties
 
 
 3. Control Center (ECT - Non Prod)
 
 	URLs ==>
-	
 	https://control-center.console-openshift-console.apps.ocp4-uat.transplace.com/clusters/lkc-p9wp2/overview
-
 	https://console-openshift-console.apps.ocp4-uat.transplace.com/k8s/ns/tp-tms/deploymentconfigs/optimizeservice
 
 	Connector commands ==>
 
 	curl -X GET http://kafka-distributed.console-openshift-console.apps.ocp4-uat.transplace.com/connectors/oracle_auto_ETL_six/status
-
 	curl -X POST http://kafka-distributed.console-openshift-console.apps.ocp4-uat.transplace.com/connectors/oracle_auto_ETL_six/restart
+
+4. SQL plus installation on GCP VM
+	SSH
+	$ gcloud compute ssh kc-prod-nzjk --internal-ip --zone us-south1-c --project uf-data-warehouse-p
+
+	
+	$ /usr/bin/toolbox
+	$ apt-get install nano
+	$ touch install.sh
+	$ nano install.sh
+	
+				(paste below script & save it in install.sh)
+				##################################
+				#!/bin/bash
+				 
+				# URLs for Oracle Instant Client packages
+				BASIC_PACKAGE_URL="https://download.oracle.com/otn_software/linux/instantclient/213000/instantclient-basic-linux.x64-21.3.0.0.0.zip"
+				SQLPLUS_PACKAGE_URL="https://download.oracle.com/otn_software/linux/instantclient/213000/instantclient-sqlplus-linux.x64-21.3.0.0.0.zip"
+				 
+				# Download directory
+				DOWNLOAD_DIR="/tmp/oracle_instant_client"
+				INSTANT_CLIENT_DIR="$DOWNLOAD_DIR/instantclient_21_3"
+				 
+				 
+				# Create download directory
+				mkdir -p $DOWNLOAD_DIR
+				 
+				# Download Oracle Instant Client Basic package
+				curl -o $DOWNLOAD_DIR/instantclient-basic.zip $BASIC_PACKAGE_URL
+				 
+				# Download Oracle Instant Client SQL*Plus package
+				curl -o $DOWNLOAD_DIR/instantclient-sqlplus.zip $SQLPLUS_PACKAGE_URL
+				 
+				echo "Download completed. Files saved in $DOWNLOAD_DIR."
+				 
+				 
+				unzip $DOWNLOAD_DIR/instantclient-basic.zip -d $DOWNLOAD_DIR
+				unzip $DOWNLOAD_DIR/instantclient-sqlplus.zip -d $DOWNLOAD_DIR
+				 
+				export LD_LIBRARY_PATH="$INSTANT_CLIENT_DIR:$LD_LIBRARY_PATH"
+				export PATH="$INSTANT_CLIENT_DIR:$PATH"
+				 
+				# Verify the environment variables
+				echo "LD_LIBRARY_PATH is set to: $LD_LIBRARY_PATH"
+				echo "PATH is set to: $PATH"
+				#####################################
+	
+	$ chmod +x install.sh
+	$ source install.sh
+	$ apt-get install libaio1
+	$ sqlplus cdc_admin/Cdc_admin#233#@//tmsudb.transplace.com/tmsu_usr.transplace.com
+	
+	END

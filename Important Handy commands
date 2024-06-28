@@ -29,7 +29,10 @@ Important Handy commands
 	$ curl -X GET http://10.247.2.4:8083/connectors
 	$ curl -X GET http://10.247.2.4:8083/connector-plugins
 	$ curl -X DELETE http://10.247.2.4:8083/connectors/oracle_cdc_one
-	$ curl -X POST --d  http://10.247.2.4:8083/connectors/oracle_cdc_one
+	$ curl -X POST -H "Content-Type: application/json" --data @cdc_connector.json http://10.247.2.4:8083/connectors
+ 		Note:
+ 		Place attached JSON file in the same path, where you are running the command
+
 	
 	Kafka commands ==>
 

@@ -28,24 +28,45 @@ Important Handy commands
 
 	Connector Commands ==>
 
-	http://10.247.2.4:8083/connectors/<>/status
-
+	curl -X GET http://10.247.2.4:8083/connectors/<>/status
+	curl -X DELETE http://10.247.2.4:8083/connectors/oracle_cdc_one
+	curl -X POST --d  http://10.247.2.4:8083/connectors/oracle_cdc_one
 	
 	Kafka commands ==>
 
+	UF VM
 	c:\kafka\kafka_2.12-3.7.0>bin\windows\kafka-console-consumer.bat --topic CDC_ADMIN_ADD_USER_ETL_SEVEN --bootstrap-server pkc-43n10.us-central1.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
-
 	c:\kafka\kafka_2.12-3.7.0>bin\windows\kafka-console-consumer.bat --topic test_first --bootstrap-server pkc-43n10.us-central1.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
 
 
 	GCP VM
-	80  bin/kafka-console-producer.sh --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --topic first_topic
-	95  bin/kafka-topics.sh --create --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --command-config config/client.properties
+	Kafka Installation ==>
+	$ apt-get install telnet
+	$ telnet lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092
+	$  telnet lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud 9092
+	$ curl -O https://downloads.apache.org/kafka/3.7.0/kafka_2.12-3.7.0.tgz
+	$ tar -xzf kafka_2.12-3.7.0.tgz
+	$ cd kafka_2.12-3.7.0
+	$ cd config/
+	$ touch client.properties
+	$ nano
+	$ apt-get install nano
+	$ nano client.properties
+	$ cat client.properties
+	$  export KAFKA_HOME=/root/kafka_2.12-3.7.0
+	$  export PATH=$PATH:$KAFKA_HOME/bin
+	$  export PATH=$PATH:$KAFKA_HOME/bin
+	$  apt-get install default-jdk
+	$  java --version
+
+	$  bin/kafka-console-consumer.sh --topic cdc_admin_customers --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --consumer.config config\client.properties  --from-beginning
+	bin/kafka-console-producer.sh --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --topic first_topic
+	bin/kafka-topics.sh --create --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --command-config config/client.properties
 	 
-	00  bin/kafka-console-producer.sh --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --producer.config config/client.properties
-	101  bin/kafka-console-consumer.sh --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
+	bin/kafka-console-producer.sh --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --producer.config config/client.properties
+	bin/kafka-console-consumer.sh --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
 	 
-	114  bin/kafka-topics.sh --list --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --command-config config/client.properties
+	bin/kafka-topics.sh --list --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --command-config config/client.properties
 
 
 3. Control Center (ECT - Non Prod)

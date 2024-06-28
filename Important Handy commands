@@ -1,0 +1,63 @@
+Important Handy commands
+
+1. Debezium installation on Kafka connect
+
+	$ curl -o /tmp/debezium-connector-oracle-2.6.2.Final-plugin.tar.gz https://repo1.maven.org/maven2/io/debezium/debezium-connector-oracle/2.6.2.Final/debezium-connector-oracle-2.6.2.Final-plugin.tar.gz
+
+	$ mkdir -p /usr/share/java/debezium-connector-oracle
+	
+	$ tar -xzf /tmp/debezium-connector-oracle-2.6.2.Final-plugin.tar.gz -C /usr/share/java/debezium-connector-oracle"
+
+	##Restart container
+
+
+2. Kafka Connect (GCP VM)
+
+	SSH ==>
+
+	gcloud compute ssh kc-prod-74vz --internal-ip --zone us-south1-a --project uf-data-warehouse-p
+	gcloud compute ssh kc-prod-nzjk --internal-ip --zone us-south1-a --project uf-data-warehouse-p
+
+	Debezium Connector on GCP VM==>
+
+		#to copy files from local to container VM:
+		gcloud compute scp <path-to-file-in-local> kc-prod-nzjk:/tmp --zone us-south1-c --internal-ip
+	 
+		#to copy from container vm to docker container:
+		sudo docker cp /tmp/<file-name> bed:/tmp
+
+	Connector Commands ==>
+
+	http://10.247.2.4:8083/connectors/<>/status
+
+	
+	Kafka commands ==>
+
+	c:\kafka\kafka_2.12-3.7.0>bin\windows\kafka-console-consumer.bat --topic CDC_ADMIN_ADD_USER_ETL_SEVEN --bootstrap-server pkc-43n10.us-central1.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
+
+	c:\kafka\kafka_2.12-3.7.0>bin\windows\kafka-console-consumer.bat --topic test_first --bootstrap-server pkc-43n10.us-central1.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
+
+
+	GCP VM
+	80  bin/kafka-console-producer.sh --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --topic first_topic
+	95  bin/kafka-topics.sh --create --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --command-config config/client.properties
+	 
+	00  bin/kafka-console-producer.sh --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --producer.config config/client.properties
+	101  bin/kafka-console-consumer.sh --topic test_first --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
+	 
+	114  bin/kafka-topics.sh --list --bootstrap-server lkc-m5xnn1.domdponoykg.us-east4.gcp.confluent.cloud:9092 --command-config config/client.properties
+
+
+3. Control Center (ECT - Non Prod)
+
+	URLs ==>
+	
+	https://control-center.console-openshift-console.apps.ocp4-uat.transplace.com/clusters/lkc-p9wp2/overview
+
+	https://console-openshift-console.apps.ocp4-uat.transplace.com/k8s/ns/tp-tms/deploymentconfigs/optimizeservice
+
+	Connector commands ==>
+
+	curl -X GET http://kafka-distributed.console-openshift-console.apps.ocp4-uat.transplace.com/connectors/oracle_auto_ETL_six/status
+
+	curl -X POST http://kafka-distributed.console-openshift-console.apps.ocp4-uat.transplace.com/connectors/oracle_auto_ETL_six/restart

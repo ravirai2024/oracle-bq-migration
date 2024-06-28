@@ -1,0 +1,33 @@
+{
+  "connector.class": "com.wepay.kafka.connect.bigquery.BigQuerySinkConnector",
+  "errors.log.include.messages": "true",
+  "transforms.RenameTopic.replacement": "$1",
+  "autoCreateTables": "true",
+  "tasks.max": "1",
+  "transforms": "InsertTimestamp,RenameTopic",
+  "project": "gcpdebeziumpoc",
+  "datasets": ".*=test_dataset",
+  "errors.deadletterqueue.context.headers.enable": "true",
+  "defaultDataset": "test_dataset",
+  "schema.registry.url": "http://schema-registry:8081",
+  "transforms.RenameTopic.regex": "C__MYUSER\\.(.*)",
+  "transforms.RenameTopic.type": "org.apache.kafka.connect.transforms.RegexRouter",
+  "value.converter": "io.confluent.connect.avro.AvroConverter",
+  "errors.log.enable": "true",
+  "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+  "autoUpdateSchemas": "true",
+  "topics.regex": "C__MYUSER\\..*",
+  "key.converter.schemas.enable": "true",
+  "value.converter.schema.registry.url": "http://schema-registry:8081",
+  "errors.deadletterqueue.topic.name": "BQSINK.DLT.TOPIC",
+  "keyfile": "/etc/kafka/connect-secrets/gcpdebeziumpoc-6f7b3ea3a4d3.json",
+  "name": "bigquery-sink-connector",
+  "transforms.InsertTimestamp.type": "org.apache.kafka.connect.transforms.InsertField$Value",
+  "value.converter.schemas.enable": "true",
+  "errors.tolerance": "all",
+  "schemaRetriever": "com.wepay.kafka.connect.bigquery.retrieve.IdentitySchemaRetriever",
+  "transforms.InsertTimestamp.timestamp.field": "timestamp",
+  "upsertEnabled":"true",// Enables upsert functionality
+  "upsertKeys":"ID",// Specifies the field(s) to be used as keys for upserts
+  "kafkaKeyFieldName":"ID" 
+}

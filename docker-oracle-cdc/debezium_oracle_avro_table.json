@@ -1,0 +1,32 @@
+{
+  "name": "debezium_oracle_avro_table",
+  "config": {
+    "connector.class": "io.debezium.connector.oracle.OracleConnector",
+    "tasks.max": "1",
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "database.hostname": "oracle",
+    "database.port": "1521",
+    "database.user": "C##MYUSER",
+    "database.password": "password",
+    "database.dbname": "ORCLCDB",
+    "database.pdb.name": "ORCLCDB",
+    "database.server.name": "oracle",
+    "table.include.list": "C##MYUSER.AVRO_TABLE",
+    "database.history.kafka.bootstrap.servers": "broker:29092",
+    "database.history.kafka.topic": "schema-changes.ORCLCDB",
+    "snapshot.mode": "initial",
+    "tombstones.on.delete": "false",
+    "schema.history.internal.kafka.bootstrap.servers": "broker:29092",
+    "schema.history.internal.kafka.topic": "schema-changes.ORCLCDB",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "false",
+    "transforms.unwrap.delete.handling.mode": "rewrite",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+    "key.converter.schema.registry.url": "http://schema-registry:8081",
+    "topic.creation.default.replication.factor": "1",
+    "topic.creation.default.partitions": "1",
+    "topic.creation.default.cleanup.policy": "delete"
+  }
+}

@@ -133,5 +133,6 @@ Important Handy commands
 	$ source install.sh
 	$ apt-get install libaio1
 	$ sqlplus cdc_admin/Cdc_admin#233#@//tmsudb.transplace.com/tmsu_usr.transplace.com
+	$ sqlplus sys/Oracle123@//localhost:1521/ORCLCDB as sysdba (Docker url string)
 	
 	END

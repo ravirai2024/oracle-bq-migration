@@ -8,6 +8,10 @@ Important Handy commands
 	##Restart container
 
 2. Kafka Connect (GCP VM)
+	Docker Logs:
+	/usr/bin/toolbox
+	sudo docker logs --tail 1000 bed
+ 
 
 	SSH ==>
 

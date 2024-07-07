@@ -18,6 +18,17 @@ Important Handy commands
 	gcloud compute ssh kc-prod-74vz --internal-ip --zone us-south1-a --project uf-data-warehouse-p
 	gcloud compute ssh kc-prod-nzjk --internal-ip --zone us-south1-a --project uf-data-warehouse-p
 
+
+	## Get env variables from docker compose to files like broker-local, connect-local in format <key>=<value>
+	## Last value of sudo docker run is Docker image ID's first 3 characters
+	
+	$ sudo docker network create gcp-kafka-network
+	$ sudo docker run -it -d --name broker --env-file broker-local -p 9101:9101 -p 9092:9092 -p 29092:29092 --network gcp-kafka-network 725
+	$ sudo docker run -it -d --name schema-registry --env-file schema-reg-local -p 8081:8081 --network gcp-kafka-network fa6
+	$ sudo docker run -it -d --name connect -h connect --env-file connect-local -p 8083:8083 --network gcp-kafka-network 0c8
+	$ sudo docker run -it -d --name control-center -h control-center -p 9021:9021 --env-file control-center-local --network gcp-kafka-network ad6
+
+
 	Debezium Connector on GCP VM==>
 
 		#to copy files from local to container VM:

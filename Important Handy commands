@@ -55,6 +55,9 @@ Important Handy commands
 	c:\kafka\kafka_2.12-3.7.0>bin\windows\kafka-console-consumer.bat --topic CDC_ADMIN_ADD_USER_ETL_SEVEN --bootstrap-server pkc-43n10.us-central1.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
 	c:\kafka\kafka_2.12-3.7.0>bin\windows\kafka-console-consumer.bat --topic test_first --bootstrap-server pkc-43n10.us-central1.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
 
+	bin\windows\kafka-topics.bat --create --topic test_topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+	bin\windows\kafka-console-consumer.bat --topic test_first --bootstrap-server pkc-43n10.us-central1.gcp.confluent.cloud:9092 --consumer.config config/client.properties  --from-beginning
+
 	GCP VM
 	Kafka Installation ==>
 	$ apt-get install telnet

@@ -1,6 +1,6 @@
 Debezium
 
-$ curl https://github.com/ravirai2024/oracle-bq-migration/blob/main/02_initial_oracle_log_miner.sh | sh
+$ curl https://raw.githubusercontent.com/ravirai2024/oracle-bq-migration/main/02_initial_oracle_log_miner.sh | sh
 
 $ curl https://raw.githubusercontent.com/ravirai2024/oracle-bq-migration/main/inventory.sql  | sqlplus debezium/dbz@//localhost:1521/orclpdb1
 

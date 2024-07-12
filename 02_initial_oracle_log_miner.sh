@@ -1,4 +1,6 @@
 #!/bin/sh
+cd /opt/oracle/oradata
+mkdir -p recovery_area
 
 # Set archive log mode and enable GG replication
 ORACLE_SID=ORCLCDB

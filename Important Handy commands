@@ -16,7 +16,7 @@ Important Handy commands
 	SSH ==>
 
 	gcloud compute ssh kc-prod-74vz --internal-ip --zone us-south1-a --project uf-data-warehouse-p
-	gcloud compute ssh kc-prod-nzjk --internal-ip --zone us-south1-a --project uf-data-warehouse-p
+	gcloud compute ssh kc-prod-nzjk --internal-ip --zone us-south1-c --project uf-data-warehouse-p
 
 
 	## Get env variables from docker compose to files like broker-local, connect-local in format <key>=<value>

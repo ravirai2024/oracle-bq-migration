@@ -11,6 +11,8 @@ Important Handy commands
 	Docker Logs:
 	/usr/bin/toolbox
 	sudo docker logs --tail 1000 bed
+ 	sudo docker exec -it connect "/bin/bash"
+
  
 
 	SSH ==>
